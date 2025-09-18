@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BookBinder - Confirm Book Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1173d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "foreground-light": "#111827",
+              "foreground-dark": "#f9fafb",
+              "card-light": "#ffffff",
+              "card-dark": "#182635",
+              "border-light": "#e5e7eb",
+              "border-dark": "rgba(255, 255, 255, 0.1)",
+              "muted-foreground-light": "#6b7280",
+              "muted-foreground-dark": "#9ca3af",
+              "input-light": "#ffffff",
+              "input-dark": "#1f2937",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-10 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl"> auto_stories </span>
+<h1 class="text-xl font-bold">BookBinder</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary font-semibold" href="#">My Books</a>
+<a class="hover:text-primary transition-colors" href="#">Templates</a>
+<a class="hover:text-primary transition-colors" href="#">Help</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-muted-foreground-light dark:text-muted-foreground-dark"> help </span>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxYs2e-YYA5eN_LqB1g3fRwQq6-ZnYKp3R4vyCP_ca1fhPy0dIqTk6fwm3aUE3Pbx5qK3EYJNK3gNqXCtpKuMeimu3f37KfVqY5KkQqSHo0gYTb3D73GMIPyEGJWvxxO6ii0bHb6TrlWlfzdweA9Icg_DPV2ODMwKLxEP-U3PTieD9d3BgkI0jlmw-oyFgdFD1uvUA1SZEEjYbqeyawcf6nGxRIqQ9T-uxGzVvcpk0vK9XgFWgbDp2HLMfOJTW5S7HwCGTerDHrS0");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<!-- Scan Section -->
+<div id="scan-section" class="w-full max-w-lg mx-auto">
+<div class="text-center mb-10">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Scan or Enter ISBN</h2>
+<p class="mt-2 text-lg text-muted-foreground-light dark:text-muted-foreground-dark">Use your camera to scan the barcode or enter the ISBN manually.</p>
+</div>
+<div class="bg-card-light dark:bg-card-dark shadow-xl rounded-lg p-6 lg:p-8 space-y-6">
+<div class="js-to-print relative group cursor-pointer flex flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-border-light dark:border-border-dark p-12 text-center hover:border-primary dark:hover:border-primary transition-colors">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg"></div>
+<span class="material-symbols-outlined text-5xl text-primary"> photo_camera </span>
+<div class="z-10">
+<p class="font-semibold text-foreground-light dark:text-foreground-dark">Scan with Camera</p>
+<p class="text-sm text-muted-foreground-light dark:text-muted-foreground-dark">Click to activate your camera</p>
+</div>
+</div>
+<div class="relative flex items-center">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-border-light dark:border-border-dark"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-card-light dark:bg-card-dark px-2 text-sm text-muted-foreground-light dark:text-muted-foreground-dark">OR</span>
+</div>
+</div>
+<form id="isbn-form" class="space-y-4">
+<div>
+<label class="sr-only" for="isbn-input">Enter ISBN</label>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4 text-foreground-light dark:text-foreground-dark placeholder-muted-foreground-light" id="isbn-input" name="isbn" placeholder="Enter ISBN (e.g., 978-0321765723)" type="text"/>
+</div>
+<button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="submit">
+              Continue
+            </button>
+</form>
+</div>
+</div>
+<!-- Print Section -->
+<div id="print-section" class="hidden w-full max-w-4xl mx-auto">
+<div class="text-center mb-10">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Confirm Book Details</h2>
+<p class="mt-2 text-lg text-muted-foreground-light dark:text-muted-foreground-dark">Verify the information below is correct before adding to your journal.</p>
+</div>
+<div class="bg-card-light dark:bg-card-dark shadow-xl rounded-lg overflow-hidden md:grid md:grid-cols-5 md:gap-8 p-6 lg:p-8">
+<div class="md:col-span-2 flex justify-center items-start">
+<div class="w-full max-w-xs aspect-[2/3] rounded-lg overflow-hidden shadow-lg">
+<div class="w-full h-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDK-0eWoOKSZXMkmSPSTQx5ABKINpfoupQuEVVj2dkgzp-LAFvpSzfpUHOiFmPOsjyb8_i3Nydh2NRnFZ8o9nYMCOj8z2de3fKq1fF7urdh5PMFdj-UHn5-4o-U6-X9mxmQNprRY8nQdnjO7opIuaTE1pa34Clgycftpw2Epdum1RhT3RK2eefi2gwo8zcUKFeD3lbm1IzBSfy6M33pvvHdRM_nhW62JBAxB_6V9xkBICq15wSO8oNotiv83gjFFjVMx7P4KCi2HUE");'></div>
+</div>
+</div>
+<div class="md:col-span-3 mt-8 md:mt-0">
+<form class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="title">Title</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4" id="title" name="title" type="text" value="The Midnight Library"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="author">Author</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4" id="author" name="author" type="text" value="Matt Haig"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="publication-year">Publication Year</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4" id="publication-year" name="publication-year" type="number" value="2020"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="page-count">Page Count</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4" id="page-count" name="page-count" type="number" value="304"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row-reverse sm:gap-4 pt-4">
+<button class="flex-1 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="submit">
+                    Confirm &amp; Add to Journal
+                  </button>
+<button class="js-to-scan mt-3 sm:mt-0 flex-1 w-full inline-flex items-center justify-center px-6 py-3 border border-border-light dark:border-border-dark rounded-lg shadow-sm text-base font-medium bg-card-light dark:bg-card-dark hover:bg-primary/10 dark:hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="button">
+                    Go Back
+                  </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<script>
+      // --- Page Sections ---
+      const scanSection = document.getElementById("scan-section");
+      const printSection = document.getElementById("print-section");
+
+      // --- Navigation Triggers ---
+      const toPrintTriggers = document.querySelectorAll(".js-to-print");
+      const toScanTriggers = document.querySelectorAll(".js-to-scan");
+      const isbnForm = document.getElementById("isbn-form");
+
+      // --- Confirmation Page Elements ---
+      const coverImageDiv = document.querySelector("#print-section .bg-cover");
+      const titleInput = document.getElementById("title");
+      const authorInput = document.getElementById("author");
+      const yearInput = document.getElementById("publication-year");
+      const pagesInput = document.getElementById("page-count");
+      // --- Page Navigation Functions ---
+      function showPrintView() {
+        scanSection.classList.add("hidden");
+        printSection.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      }
+
+      function showScanView() {
+        printSection.classList.add("hidden");
+        scanSection.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      }
+
+      // --- API Fetch and Data Population ---
+      async function fetchAndDisplayBook(event) {
+        event.preventDefault();
+        const isbnInput = document.getElementById("isbn-input");
+        const isbn = isbnInput.value.trim().replace(/-/g, "");
+
+        if (!isbn) {
+          alert("Bitte geben Sie eine ISBN ein."); // "Please enter an ISBN."
+          return;
+        }
+
+        // Add a loading indicator
+        const submitButton = isbnForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Searching...";
+
+        const apiUrl = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`;
+
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          const bookKey = `ISBN:${isbn}`;
+          const bookData = data[bookKey];
+
+          if (!bookData) {
+            alert("Buch für die angegebene ISBN nicht gefunden. Bitte überprüfen Sie die Nummer."); // "Book not found for the given ISBN. Please check the number."
+            return;
+          }
+
+          // Populate the confirmation form
+          titleInput.value = bookData.title || "";
+          authorInput.value = bookData.authors ? bookData.authors.map((a) => a.name).join(", ") : "";
+
+          let year = "";
+          if (bookData.publish_date) {
+            const yearMatch = bookData.publish_date.match(/\d{4}/);
+            if (yearMatch) year = yearMatch[0];
+          } else if (bookData.publish_year) {
+            year = bookData.publish_year;
+          }
+          yearInput.value = year;
+
+          pagesInput.value = bookData.number_of_pages || "";
+
+          // Update cover image
+          if (bookData.cover && bookData.cover.large) {
+            coverImageDiv.style.backgroundImage = `url('${bookData.cover.large}')`;
+          } else {
+            coverImageDiv.style.backgroundImage = "none";
+          }
+
+          showPrintView();
+        } catch (error) {
+          console.error("Error fetching book data:", error);
+          alert("Ein Fehler ist beim Abrufen der Buchdetails aufgetreten. Bitte versuchen Sie es später erneut.");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
+      }
+
+      // --- Event Listeners ---
+      isbnForm.addEventListener("submit", fetchAndDisplayBook);
+
+      toPrintTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          showPrintView();
+        });
+      });
+
+      toScanTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          showScanView();
+        });
+      });
+    </script>
+</body></html>
