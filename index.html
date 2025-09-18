@@ -77,7 +77,7 @@
       }
 
       .review-container .header h1 {
-          font-family: 'Permanent Marker', cursive;
+          font-family: 'Water Lemon', cursive;
           font-size: 3rem;
           text-align: center;
           flex-grow: 1;
@@ -89,10 +89,10 @@
           border: 2px solid #000;
           border-radius: 50%;
           display: flex;
-          justify-content: center;
+          justify-content: left;
           align-items: center;
           font-size: 2rem;
-          font-family: sans-serif;
+          font-family: Water Lemon;
           font-weight: bold;
       }
 
@@ -122,6 +122,11 @@
           display: inline-block;
           width: 100px;
           flex-shrink: 0;
+      }
+
+      .date-row {
+        display: flex;
+        justify-content: space-between; /* Verteilt die Elemente gleichmäßig */
       }
 
       .review-container .book-info .book-svg {
@@ -359,6 +364,10 @@
 <p><span>year:</span><span id="review-year"></span></p>
 <p><span>genre:</span><span id="review-genre"></span></p>
 <p><span>pages:</span><span id="review-pages"></span></p>
+<p class="date-row">
+  <span>start:</span><span id="review-start"></span>
+  <span>end:</span><span id="review-end"></span>
+</p>
 </div>
 <div class="book-svg">
 <img id="review-book-cover" class="book-cover-img" src="" alt="Buchcover">
@@ -374,15 +383,12 @@
 <h2>The book in 3 sentences:</h2>
 <div class="sentence-box">
 <p>1.</p>
-<div class="line"></div>
 </div>
 <div class="sentence-box">
 <p>2.</p>
-<div class="line"></div>
 </div>
 <div class="sentence-box">
 <p>3.</p>
-<div class="line"></div>
 </div>
 </div>
 <div class="flex flex-col sm:flex-row-reverse sm:gap-4 pt-4">
