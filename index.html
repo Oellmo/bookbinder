@@ -312,6 +312,12 @@
 <input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4" id="author" name="author" type="text" value="Matt Haig"/>
 </div>
 </div>
+<div>
+<label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="genre">Genre</label>
+<div class="mt-1">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark focus:ring-primary focus:border-primary sm:text-sm h-12 px-4" id="genre" name="genre" type="text" value=""/>
+</div>
+</div>
 <div class="grid grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="publication-year">Publication Year</label>
@@ -351,6 +357,7 @@
 <p><span>title:</span><span id="review-title"></span></p>
 <p><span>author:</span><span id="review-author"></span></p>
 <p><span>year:</span><span id="review-year"></span></p>
+<p><span>genre:</span><span id="review-genre"></span></p>
 <p><span>pages:</span><span id="review-pages"></span></p>
 </div>
 <div class="book-svg">
@@ -409,12 +416,14 @@
       const coverImageDiv = document.querySelector("#print-section .bg-cover");
       const titleInput = document.getElementById("title");
       const authorInput = document.getElementById("author");
+      const genreInput = document.getElementById("genre");
       const yearInput = document.getElementById("publication-year");
       const pagesInput = document.getElementById("page-count");
 
       // --- Review Template Elements ---
       const reviewTitle = document.getElementById("review-title");
       const reviewAuthor = document.getElementById("review-author");
+      const reviewGenre = document.getElementById("review-genre");
       const reviewYear = document.getElementById("review-year");
       const reviewPages = document.getElementById("review-pages");
       const reviewBookCover = document.getElementById("review-book-cover");
@@ -485,11 +494,13 @@
             year = bookData.publish_year;
           }
           const pages = bookData.number_of_pages || "";
+          const genre = (bookData.subjects && bookData.subjects.length > 0) ? bookData.subjects[0].name : "";
           const coverUrl = (bookData.cover && bookData.cover.large) ? bookData.cover.large : null;
 
           // Populate the confirmation form
           titleInput.value = title;
           authorInput.value = authors;
+          genreInput.value = genre;
           yearInput.value = year;
           pagesInput.value = pages;
           if (coverUrl) {
@@ -518,6 +529,7 @@
         // Populate review template
         reviewTitle.textContent = titleInput.value;
         reviewAuthor.textContent = authorInput.value;
+        reviewGenre.textContent = genreInput.value;
         reviewYear.textContent = yearInput.value;
         reviewPages.textContent = pagesInput.value;
 
