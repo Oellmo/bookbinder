@@ -6,8 +6,10 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 <script>
       tailwind.config = {
         darkMode: "class",
@@ -44,6 +46,189 @@
 <style>
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+
+      /* Styles from template.html */
+      #review-section {
+          font-family: 'Kalam', cursive;
+          width: 100%;
+          padding: 20px 0;
+          color: #000; /* Set text color for this section */
+      }
+
+      .review-container {
+          width: 700px;
+          max-width: 95%;
+          background-color: #fff;
+          padding: 40px;
+          border: 2px solid #000;
+          box-shadow: 8px 8px 0px 0px #000;
+      }
+
+      .review-container .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 40px;
+      }
+
+      .review-container .header h1 {
+          font-family: 'Permanent Marker', cursive;
+          font-size: 3rem;
+          text-align: center;
+          flex-grow: 1;
+      }
+
+      .review-container .header .hash {
+          width: 50px;
+          height: 50px;
+          border: 2px solid #000;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2rem;
+          font-family: sans-serif;
+          font-weight: bold;
+      }
+
+      .review-container .book-info {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 40px;
+      }
+      
+      .review-container .book-info-text {
+          flex-grow: 1;
+      }
+
+      .review-container .book-info p {
+          font-size: 1.5rem;
+          margin: 0;
+          line-height: 2.5rem;
+          display: flex;
+          align-items: center;
+      }
+
+      .review-container .book-info p span {
+          margin-right: 10px;
+      }
+
+      .review-container .book-info p .line {
+          flex-grow: 1;
+          height: 2px;
+          background-color: #000;
+      }
+
+      .review-container .book-info .book-svg {
+          width: 180px;
+          height: 250px;
+          flex-shrink: 0;
+          border: 2px solid #000;
+          background-color: #f0f0f0;
+          box-shadow: 4px 4px 0px 0px #000;
+          position: relative;
+      }
+
+      .review-container .book-info .book-svg::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -10px;
+          width: 10px;
+          height: 100%;
+          background-color: #f0f0f0;
+          border: 2px solid #000;
+          border-right: none;
+      }
+
+      .review-container .book-svg .book-cover-img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+
+      .review-container .rating-section {
+          display: flex;
+          justify-content: space-around;
+          margin-bottom: 40px;
+      }
+
+      .review-container .summary h2 {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+      }
+
+      .review-container .summary .sentence-box {
+          border: 2px solid #000;
+          background-color: #f0f0f0;
+          padding: 15px;
+          border-radius: 10px;
+          margin-bottom: 15px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+      }
+
+      .review-container .summary .sentence-box p {
+          font-size: 1.25rem;
+          margin: 0;
+          font-weight: bold;
+      }
+
+      .review-container .summary .sentence-box .line {
+          flex-grow: 1;
+          height: 2px;
+          background-color: #000;
+      }
+
+      /* Keep button fonts consistent with the rest of the app */
+      #review-section button {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Responsive adjustments for review-container on smaller screens */
+      @media (max-width: 640px) {
+          .review-container {
+              padding: 20px;
+              box-shadow: 4px 4px 0px 0px #000;
+          }
+
+          .review-container .header {
+              margin-bottom: 20px;
+          }
+
+          .review-container .header h1 {
+              font-size: 2rem;
+          }
+
+          .review-container .header .hash {
+              width: 40px;
+              height: 40px;
+              font-size: 1.5rem;
+          }
+
+          .review-container .book-info {
+              flex-direction: column-reverse; /* Show cover image on top */
+              align-items: center;
+              gap: 30px;
+          }
+
+          .review-container .book-info-text {
+              width: 100%;
+          }
+          
+          .review-container .book-info p {
+              font-size: 1.25rem;
+              line-height: 2.25rem;
+          }
+
+          .review-container .rating-section {
+              flex-direction: column;
+              gap: 20px;
+              align-items: center;
+          }
       }
     </style>
 </head>
@@ -119,7 +304,7 @@
 </div>
 </div>
 <div class="md:col-span-3 mt-8 md:mt-0">
-<form class="space-y-6">
+<form id="confirm-form" class="space-y-6">
 <div>
 <label class="block text-sm font-medium text-muted-foreground-light dark:text-muted-foreground-dark" for="title">Title</label>
 <div class="mt-1">
@@ -148,13 +333,64 @@
 </div>
 <div class="flex flex-col sm:flex-row-reverse sm:gap-4 pt-4">
 <button class="flex-1 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="submit">
-                    Confirm &amp; Add to Journal
+                    Continue
                   </button>
 <button class="js-to-scan mt-3 sm:mt-0 flex-1 w-full inline-flex items-center justify-center px-6 py-3 border border-border-light dark:border-border-dark rounded-lg shadow-sm text-base font-medium bg-card-light dark:bg-card-dark hover:bg-primary/10 dark:hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="button">
                     Go Back
                   </button>
 </div>
 </form>
+</div>
+</div>
+</div>
+<!-- Review Section -->
+<div id="review-section" class="hidden w-full">
+<div class="w-full flex justify-center">
+<div class="review-container">
+<div class="header">
+<h1>book review</h1>
+<div class="hash">#</div>
+</div>
+<div class="book-info">
+<div class="book-info-text">
+<p><span>title:</span><span id="review-title"></span><span class="line"></span></p>
+<p><span>author:</span><span id="review-author"></span><span class="line"></span></p>
+<p><span>year:</span><span id="review-year"></span><span class="line"></span></p>
+<p><span>pages:</span><span id="review-pages"></span><span class="line"></span></p>
+</div>
+<div class="book-svg">
+<img id="review-book-cover" class="book-cover-img" src="" alt="Buchcover">
+</div>
+</div>
+<div class="rating-section">
+<img src="rating.svg" alt="Rating">
+<img src="spice.svg" alt="Spice rating">
+<img src="recommend.svg" alt="Recommendation">
+</div>
+<img src="plot.svg" alt="Specific ratings" style="width: 100%; margin-bottom: 40px;">
+<div class="summary">
+<h2>The book in 3 sentences:</h2>
+<div class="sentence-box">
+<p>1.</p>
+<div class="line"></div>
+</div>
+<div class="sentence-box">
+<p>2.</p>
+<div class="line"></div>
+</div>
+<div class="sentence-box">
+<p>3.</p>
+<div class="line"></div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row-reverse sm:gap-4 pt-4">
+<button class="flex-1 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="button" onclick="window.print()">
+                    Print
+                  </button>
+<button id="back-to-confirm-btn" class="mt-3 sm:mt-0 flex-1 w-full inline-flex items-center justify-center px-6 py-3 border border-border-light dark:border-border-dark rounded-lg shadow-sm text-base font-medium bg-card-light dark:bg-card-dark hover:bg-primary/10 dark:hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-card-dark" type="button">
+                    Go Back
+                  </button>
+</div>
 </div>
 </div>
 </div>
@@ -165,11 +401,14 @@
       // --- Page Sections ---
       const scanSection = document.getElementById("scan-section");
       const printSection = document.getElementById("print-section");
+      const reviewSection = document.getElementById("review-section");
 
       // --- Navigation Triggers ---
       const toPrintTriggers = document.querySelectorAll(".js-to-print");
       const toScanTriggers = document.querySelectorAll(".js-to-scan");
       const isbnForm = document.getElementById("isbn-form");
+      const confirmForm = document.getElementById("confirm-form");
+      const backToConfirmBtn = document.getElementById("back-to-confirm-btn");
 
       // --- Confirmation Page Elements ---
       const coverImageDiv = document.querySelector("#print-section .bg-cover");
@@ -177,16 +416,33 @@
       const authorInput = document.getElementById("author");
       const yearInput = document.getElementById("publication-year");
       const pagesInput = document.getElementById("page-count");
+
+      // --- Review Template Elements ---
+      const reviewTitle = document.getElementById("review-title");
+      const reviewAuthor = document.getElementById("review-author");
+      const reviewYear = document.getElementById("review-year");
+      const reviewPages = document.getElementById("review-pages");
+      const reviewBookCover = document.getElementById("review-book-cover");
+
       // --- Page Navigation Functions ---
       function showPrintView() {
         scanSection.classList.add("hidden");
+        reviewSection.classList.add("hidden");
         printSection.classList.remove("hidden");
         window.scrollTo(0, 0);
       }
 
       function showScanView() {
         printSection.classList.add("hidden");
+        reviewSection.classList.add("hidden");
         scanSection.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      }
+
+      function showReviewView() {
+        printSection.classList.add("hidden");
+        scanSection.classList.add("hidden");
+        reviewSection.classList.remove("hidden");
         window.scrollTo(0, 0);
       }
 
@@ -223,10 +479,9 @@
             return;
           }
 
-          // Populate the confirmation form
-          titleInput.value = bookData.title || "";
-          authorInput.value = bookData.authors ? bookData.authors.map((a) => a.name).join(", ") : "";
-
+          // Extract data from API response
+          const title = bookData.title || "";
+          const authors = bookData.authors ? bookData.authors.map((a) => a.name).join(", ") : "";
           let year = "";
           if (bookData.publish_date) {
             const yearMatch = bookData.publish_date.match(/\d{4}/);
@@ -234,17 +489,21 @@
           } else if (bookData.publish_year) {
             year = bookData.publish_year;
           }
+          const pages = bookData.number_of_pages || "";
+          const coverUrl = (bookData.cover && bookData.cover.large) ? bookData.cover.large : null;
+
+          // Populate the confirmation form
+          titleInput.value = title;
+          authorInput.value = authors;
           yearInput.value = year;
-
-          pagesInput.value = bookData.number_of_pages || "";
-
-          // Update cover image
-          if (bookData.cover && bookData.cover.large) {
-            coverImageDiv.style.backgroundImage = `url('${bookData.cover.large}')`;
+          pagesInput.value = pages;
+          if (coverUrl) {
+            coverImageDiv.style.backgroundImage = `url('${coverUrl}')`;
           } else {
             coverImageDiv.style.backgroundImage = "none";
           }
 
+          // Show the confirmation/print view
           showPrintView();
         } catch (error) {
           console.error("Error fetching book data:", error);
@@ -258,6 +517,27 @@
       // --- Event Listeners ---
       isbnForm.addEventListener("submit", fetchAndDisplayBook);
 
+      confirmForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Populate review template
+        reviewTitle.textContent = titleInput.value;
+        reviewAuthor.textContent = authorInput.value;
+        reviewYear.textContent = yearInput.value;
+        reviewPages.textContent = pagesInput.value;
+
+        // Extract URL from 'url("...")'
+        const bgImage = coverImageDiv.style.backgroundImage;
+        if (bgImage && bgImage !== "none") {
+          const coverUrl = bgImage.match(/url\("?(.+?)"?\)/)[1];
+          reviewBookCover.src = coverUrl;
+          reviewBookCover.style.display = 'block';
+        } else {
+          reviewBookCover.style.display = 'none';
+        }
+        showReviewView();
+      });
+
       toPrintTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (event) => {
           event.preventDefault();
@@ -270,6 +550,11 @@
           event.preventDefault();
           showScanView();
         });
+      });
+
+      backToConfirmBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        showPrintView();
       });
     </script>
 </body></html>
